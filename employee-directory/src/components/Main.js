@@ -64,9 +64,8 @@ class Main extends React.Component {
                     <div className='input-group col-2'>
                         <select className ='form-control'
                             style={{
-                                marginBottom: '10px',
-                                color: 'grey',
-                                height: '35px',
+                                margin: '10px',
+                                color: 'black'
                             }}
                             id='sortSelection'
                             onChange={this.handleSortState}
