@@ -1,14 +1,13 @@
-import React from "react";
+import React from 'react';
 import API from '../utils/API';
 import Employees from './EmployeeList';
-import SearchDOB from './SearchDOB';
-import SearchName from './SearchName';
 
 class Main extends React.Component {
     state = {
       employees: [],
-      search: "",
-      sortType: "",
+      filteredUsers: [],
+      search: '',
+      sortType: '',
     };
   
     componentDidMount() {
@@ -19,11 +18,30 @@ class Main extends React.Component {
       API.getEmployees()
         .then((res) => {
           this.setState({
-            employees: res.data.results,
+            employees: res.data.results
           });
           console.log(this.state.employees);
         })
         .catch((err) => console.log(err));
+    };
+    
+    handleSortState = () => {
+      const selectedEmployee = document.querySelector('#sortSelection');
+      const output = selectedEmployee.value;
+      if (output === 'name') {
+        const sortedEmployees = this.state.employees;
+        sortedEmployees.sort((a, b) => a.name.last.localeCompare(b.name.last));
+        this.setState({ employees: sortedEmployees });
+      }
+      if (output === 'dob') {
+        this.setState({ sortType: 'dob' });
+        const sortedEmployees = this.state.employees;
+        sortedEmployees.sort((a, b) => a.dob.date.localeCompare(b.dob.date));
+        this.setState({ employees: sortedEmployees });
+      }
+      if (output === 'none') {
+        this.setState({ sortType: 'none' });
+      }
     };
 
     render() {
@@ -42,16 +60,27 @@ class Main extends React.Component {
                     <span className='navbar-toggler-icon' />
                 </button>
                 <div className='collapse navbar-collapse row' id='navbarNav'>
-                    <div className='input-group col-7'>
-                        <SearchDOB />
+                    <div className='col-5'></div>
+                    <div className='input-group col-2'>
+                        <select className ='form-control'
+                            style={{
+                                marginBottom: '10px',
+                                color: 'grey',
+                                height: '35px',
+                            }}
+                            id='sortSelection'
+                            onChange={this.handleSortState}
+                            >
+                            <option value='none'>Sort by</option>
+                            <option value='name'>Last Name</option>
+                            <option value='dob'>Year</option>
+                        </select>
                     </div>
-                    <div className='input-group col-3'>
-                        <SearchName />
-                    </div>
+                    <div className='col-5'></div>
                 </div>
             </nav>
-            <div className="container">
-            <table className="table">
+            <div className='container'>
+            <table className='table'>
                 <thead>
                 <tr>
                     <th>Image</th>

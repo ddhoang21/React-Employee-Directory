@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function Employees(props) {
   return (
@@ -6,7 +6,7 @@ function Employees(props) {
       {props.employees.map((employee) => (
         <tr key={employee.id.value}>
           <td>
-            <img alt="placeholder" src={employee.picture.thumbnail} />
+            <img alt='placeholder' src={employee.picture.thumbnail} />
           </td>
           <td>
             {employee.name.first} {employee.name.last}
