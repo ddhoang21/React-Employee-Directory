@@ -5,7 +5,6 @@ import Employees from './EmployeeList';
 class Main extends React.Component {
     state = {
       employees: [],
-      filteredUsers: [],
       search: '',
       sortType: '',
     };
