@@ -2,27 +2,30 @@
 
 ## Table of contents
 
-- [General info](#general-info)
+- [General Info](#general-info)
 - [Technologies](#Technologies)
 - [Deployment](#Deployment)
 - [Summary](#Summary)
 
 ## General Info
 
-This application uses node, inquirer, and MySQL to manage a company's employees.
+This project is an employee directory created with React.
 
-GitHub URL: https://github.com/ddhoang21/Employee-Tracker
+![image](https://user-images.githubusercontent.com/55167673/79087845-834e4d00-7cf5-11ea-96f5-492856504b32.png)
 
-![Employee Tracker](Assets/employee-tracker.gif)
+## User Story
+
+```sh
+As a user, 
+I want to be able to view my entire employee directory at once 
+So that I have quick access to their information.
+```
 
 ## Technologies
 
 Project is created with :
 
-- [JavaScript](https://www.javascript.com/)
-- [Node.js](https://nodejs.org/en/)
-- [inquirer](https://www.npmjs.com/package/inquirer)
-- [MySQL](https://www.npmjs.com/package/mysql)
+- [React](https://reactjs.org/)
 
 ## Deployment
 
@@ -34,13 +37,15 @@ Project is created with :
 npm install
 ```
 ```sh
-node employees.js
+npm run watch
 ```
 
 ## Summary
 
-The user is able to create and manage the company's information and may edit the database.
-s
+When the user loads the page, they will be given the option to create a new workout or continue their last workout.
+
+The user can sort the table ascendingly by last names or chronologically by date of birth.
+
 ## Author
 
 - Duc-Hoang Do
