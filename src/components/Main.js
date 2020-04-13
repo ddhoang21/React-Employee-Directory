@@ -10,11 +10,11 @@ class Main extends React.Component {
     };
   
     componentDidMount() {
-      this.getEmployees();
+      this.getUsers();
     }
 
-    getEmployees = () => {
-      API.getEmployees()
+    getUsers = () => {
+      API.getUsers()
         .then((res) => {
           this.setState({
             employees: res.data.results
@@ -24,22 +24,22 @@ class Main extends React.Component {
         .catch((err) => console.log(err));
     };
     
-    handleSortState = () => {
+    sorting = () => {
       const selectedEmployee = document.querySelector('#sortSelection');
       const output = selectedEmployee.value;
-      if (output === 'name') {
+      if (output === 'default') {
+        this.setState({ sortType: 'default' });
+      }
+      if (output === 'lastname') {
         const sortedEmployees = this.state.employees;
         sortedEmployees.sort((a, b) => a.name.last.localeCompare(b.name.last));
         this.setState({ employees: sortedEmployees });
       }
-      if (output === 'dob') {
-        this.setState({ sortType: 'dob' });
+      if (output === 'year') {
+        this.setState({ sortType: 'year' });
         const sortedEmployees = this.state.employees;
         sortedEmployees.sort((a, b) => a.dob.date.localeCompare(b.dob.date));
         this.setState({ employees: sortedEmployees });
-      }
-      if (output === 'none') {
-        this.setState({ sortType: 'none' });
       }
     };
 
@@ -67,18 +67,18 @@ class Main extends React.Component {
                                 color: 'black'
                             }}
                             id='sortSelection'
-                            onChange={this.handleSortState}
+                            onChange={this.sorting}
                             >
-                            <option value='none'>Sort by</option>
-                            <option value='name'>Last Name</option>
-                            <option value='dob'>Year</option>
+                            <option value='default'>Sort by</option>
+                            <option value='lastname'>Last Name</option>
+                            <option value='year'>Year</option>
                         </select>
                     </div>
                     <div className='col-5'></div>
                 </div>
             </nav>
-            <div className='container'>
-            <table className='table'>
+            <div>
+            <table>
                 <thead>
                 <tr>
                     <th>Image</th>
